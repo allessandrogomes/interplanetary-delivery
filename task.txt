@@ -1,0 +1,1 @@
+Usando React, você deve desenvolver duas páginas: as páginas de cadastro e edição de endereço. 
