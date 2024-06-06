@@ -1,18 +1,19 @@
-import { Box, Paper } from "@mui/material";
 import { useState } from "react";
 import ManageAddressesView from "../components/ManageAddressesView";
+import AddNewAddressView from "../components/AddNewAddressView";
+import BoxPaper from "../components/shared/BoxPaper";
 
 export default function AddressRegistrationPage() {
 
     const [addingNewAddress, setAddingNewAddress] = useState<boolean>(false)
 
     return (
-        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "#EEEEEE", height: "70vh", minHeight: "550px", width: "60vw", maxWidth: "600px", p: "20px" }} component={Paper}>
+        <BoxPaper>
             {!addingNewAddress ? (
                 <ManageAddressesView clickAddNewAddress={() => setAddingNewAddress(true)} />
             ) : (
-                <button onClick={() => setAddingNewAddress(false)}>voltar</button>
+                <AddNewAddressView backView={() => setAddingNewAddress(false)} />
             )}
-        </Box>
+        </BoxPaper>
     )
 }

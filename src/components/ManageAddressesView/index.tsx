@@ -1,7 +1,7 @@
 import { Box, Button } from "@mui/material"
-import TitlePage from "../TitlePage"
+import TitlePage from "../shared/TitlePage"
 import CardAddress from "./CardAddress"
-import ButtonsCancelOrConfirmChanges from "../ButtonsCancelOrConfirmChanges"
+import ButtonsCancelOrConfirmChanges from "./ButtonsCancelOrConfirmChanges"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState } from "react"
 import { RootState } from "../../store"
@@ -17,8 +17,8 @@ export default function ManageAddressesView({ clickAddNewAddress }: ManageAddres
     const adresses: any = useSelector<RootState>((state) => state.adresses)
     const dispatch = useDispatch()
 
-    const [defaultIdAddress, setDefaultIdAddress] = useState<number | null>(null)
-    const [selectedAddressId, setSelectedAddressId] = useState<number | null>(null)
+    const [defaultIdAddress, setDefaultIdAddress] = useState<string | null>(null)
+    const [selectedAddressId, setSelectedAddressId] = useState<string | null>(null)
     const [changedAddress, setChangedAddress] = useState<boolean>(false)
 
     useEffect(() => {
@@ -31,7 +31,7 @@ export default function ManageAddressesView({ clickAddNewAddress }: ManageAddres
         }
     }, [adresses])
 
-    function updateSelectedAddress(clickedIdAddress: number) {
+    function updateSelectedAddress(clickedIdAddress: string) {
         setSelectedAddressId(clickedIdAddress)
         if (clickedIdAddress !== defaultIdAddress) {
             setChangedAddress(true)
@@ -45,8 +45,8 @@ export default function ManageAddressesView({ clickAddNewAddress }: ManageAddres
     return (
         <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", height: "100%", width: "100%", gap: "50px", position: "relative" }}>
             <TitlePage title="Meus endereços" />
-            <Button onClick={(e) => clickAddNewAddress(e)} sx={{ position: "absolute", right: "0", top: "40px" }} size="small" variant="contained">Adicionar endereço</Button>
-            <Box sx={{ display: "flex", flexDirection: "column", gap: "20px", overflow: "auto", m: "10px 0 20px 0", width: "100%", minHeight: "300px", height: "100%" }}>
+            <Button onClick={(e) => clickAddNewAddress(e)} sx={{ position: "absolute", right: { xs: "inherit", sm: "0" }, top: "40px" }} size="small" variant="contained">Adicionar endereço</Button>
+            <Box sx={{ display: "flex", flexDirection: "column", gap: "20px", overflow: "auto", m: "10px 0 20px 0", width: "100%", minHeight: "300px", height: "100%", p: "10px 0" }}>
                 {sortedAddresses.map(address => (
                     <CardAddress
                         {...address}

@@ -5,6 +5,6 @@ interface AddressProps {
 }
 export default function Address({ address }: AddressProps) {
     return (
-        <Typography sx={{ fontSize: "0.75rem", color: "gray" }} component="span">{address}</Typography>
+        <Typography sx={{ fontSize: { xs: "12px", sm: '1rem' }, fontWeight: "bold" }} component="span">{address}</Typography>
     )
 }

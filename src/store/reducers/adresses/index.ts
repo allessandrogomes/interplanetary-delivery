@@ -1,42 +1,42 @@
 import { createSlice } from "@reduxjs/toolkit"
-
+import { v4 as uuidv4 } from 'uuid'
 
 const initialState = [
     {
-        id: 1,
+        id: uuidv4(),
         typeAddress: "Casa",
         surnameAddress: "Minha casa",
-        phoneNumber: "(74) 99912-3456",
-        address: "Brasil, São Paulo, Pinheiros, Rua Artur de Azevedo 225, Casa de esquina",
+        address: "Brasil, São Paulo, Pinheiros, Rua Artur de Azevedo 225",
         planet: "terra",
-        defaultAddress: false
+        defaultAddress: false,
+        isEditing: false
     },
     {
-        id: 2,
-        typeAddress: "Depósito",
+        id: uuidv4(),
+        typeAddress: "Outro",
         surnameAddress: "Eletrônicos",
-        phoneNumber: "(74) 99912-3456",
         address: "0047",
         planet: "marte",
-        defaultAddress: true
+        defaultAddress: true,
+        isEditing: false
     },
     {
-        id: 3,
-        typeAddress: "Depósito",
-        surnameAddress: "Eletrônicos",
-        phoneNumber: "(74) 99912-3456",
-        address: "0047",
+        id: uuidv4(),
+        typeAddress: "Trabalho",
+        surnameAddress: "Placas de vídeo",
+        address: "2842",
         planet: "marte",
-        defaultAddress: false
+        defaultAddress: false,
+        isEditing: false
     },
     {
-        id: 4,
+        id: uuidv4(),
         typeAddress: "Casa",
-        surnameAddress: "Minha casa",
-        phoneNumber: "(74) 99912-3456",
-        address: "Brasil, São Paulo, Pinheiros, Rua Artur de Azevedo 225, Casa de esquina",
+        surnameAddress: "Casa mãe",
+        address: "Rio de Janeiro, Panamericana, Chihuahua, Chih., Mexico",
         planet: "terra",
-        defaultAddress: false
+        defaultAddress: false,
+        isEditing: false
     }
 ]
 
@@ -52,13 +52,29 @@ const adressesSlice:any = createSlice({
             return updatedState
         },
         deleteAddress: (state, { payload }) => {
+            const updatedState = state.filter(item => item.id !== payload)
+            return updatedState
+        },
+        addNewAddress: (state, { payload }) => {
             let cloneState = state.map(item => ({ ...item }))
-            const updatedState = cloneState.filter(item => item.id !== payload)
+            cloneState.push(payload)
+            return cloneState
+        },
+        setEditing: (state, { payload }) => {
+            let cloneState = state.map(item => ({ ...item }))
+            cloneState.forEach(item => {
+                item.id !== payload ? item.isEditing = false : item.isEditing = true
+            })
+            return cloneState
+        }, 
+        editAddress: (state, { payload }) => {
+            let updatedState = state.filter(item => item.id !== payload.id)
+            updatedState.push(payload)
             return updatedState
         }
     }
 })
 
-export const { updateDefaultAddress, deleteAddress } = adressesSlice.actions
+export const { updateDefaultAddress, deleteAddress, addNewAddress, setEditing, editAddress } = adressesSlice.actions
 
 export default adressesSlice.reducer

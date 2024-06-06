@@ -6,6 +6,6 @@ interface SurnameAddressProps {
 
 export default function SurnameAddress({ surnameAddress }: SurnameAddressProps) {
     return (
-        <Typography sx={{ fontSize: "1rem", fontWeight: "bold" }} component="span">{surnameAddress}</Typography>
+        <Typography sx={{ fontSize: "0.75rem", color: "gray" }} component="span">{surnameAddress}</Typography>
     )
 }

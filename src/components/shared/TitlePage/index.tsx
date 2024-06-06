@@ -8,7 +8,7 @@ export default function TitlePage({ title }: TitlePageProps) {
     return (
         <Typography
             sx={{
-                alignSelf: "start",
+                alignSelf: {xs: "center", sm: "start"},
                 ml: "10px",
                 fontSize: "1.5rem",
                 fontWeight: "bold"

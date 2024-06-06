@@ -1,9 +1,9 @@
 export default interface IAddressInfo {
-    id: number,
+    id: string,
     typeAddress: string,
     surnameAddress: string,
-    phoneNumber: string,
     address: string,
     planet: string,
-    defaultAddress: boolean
+    defaultAddress: boolean,
+    isEditing: boolean
 }
